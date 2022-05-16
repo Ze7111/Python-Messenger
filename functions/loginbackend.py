@@ -1,5 +1,5 @@
 import sqlite3 as sl
-con = sl.connect('databases\\logininfo.db')
+con = sl.connect('databases\\logininfo.sql')
 
 #### ------------------------------ D O   N O T   T O U C H -------------------------------------####
 def newtable():
@@ -45,7 +45,7 @@ def inputdata(newuser, newpassword, newelevationlevel):
     #########################################################
     sql = 'INSERT INTO logininfo (USERNAME, PASSWORD, ELEVATION) values(?, ?, ?)'
     data = [
-        (f'{officialnewuser}', f'{officialnewpass}', newelevationlevel),
+        (f'{officialnewuser}', f'{officialnewpass}', officialelvation),
     ]
     with con:
         con.executemany(sql, data)
@@ -56,26 +56,22 @@ def inputdata(newuser, newpassword, newelevationlevel):
 
         
 #### ------------------------------ O N L Y   U S E   T H I S -------------------------------------####  
-def login(user, password):      
+def login(): 
+    user = input("- ")
+    password = input("- ")        
     with con:
         data = con.execute(f"SELECT * FROM LOGININFO WHERE USERNAME like '{user}'")
         for row in data:
             if password in row:
-                print("YESSIR")
                 if 1 in row:
-                    print("admin")
                     return 2
                 elif 0 in row:
-                    print("non admin")
                     return 1
                 elif 2 in row:
-                    print("super admin")
                     return 3
             else:
-                print("incorrect")
                 return 0
         else:
-            print("incorrect")
             return 0
 #### ------------------------------ O N L Y   U S E   T H I S -------------------------------------####  
             
