@@ -21,28 +21,36 @@ def inputdata(newuser, newpassword, newelevationlevel):
     if check_newuser == True:
         officialnewuser = newuser
     else:
-        print("FATEL ERROR")
+        error = "INVALID(400), SEE ERROR CODES FOR MORE INFO"
+        return error
     #########################################################
     newpassword = input("Enter new Password : ")
     confirrmpass = input("Repeat new Password : ")
     if newpassword == confirrmpass:
         officialnewpass = newpassword
     else:
-        print("FATEL ERROR")
+        error = "INVALID(400), SEE ERROR CODES FOR MORE INFO"
+        return error
     #########################################################
     newelevationlevel = int(input("Admin or no (1 or 0) : "))
-    if newelevationlevel == 1 or 0:
-        sql = 'INSERT INTO logininfo (USERNAME, PASSWORD, ELEVATION) values(?, ?, ?)'
-        data = [
-            (f'{officialnewuser}', f'{officialnewpass}', newelevationlevel),
-        ]
-        with con:
-            con.executemany(sql, data)
-        print("ok fine")
+    if newelevationlevel == 1:
+        officialelvation = newelevationlevel
+    elif newelevationlevel == 1:
+        officialelvation = newelevationlevel
+    elif newelevationlevel == 2:
+        officialelvation = newelevationlevel
     else:
-        print("FATEL ERROR")
-    
-    
+        error = "INVALID(400), SEE ERROR CODES FOR MORE INFO"
+        return error
+    #########################################################
+    sql = 'INSERT INTO logininfo (USERNAME, PASSWORD, ELEVATION) values(?, ?, ?)'
+    data = [
+        (f'{officialnewuser}', f'{officialnewpass}', newelevationlevel),
+    ]
+    with con:
+        con.executemany(sql, data)
+    #########################################################
+
 #### ------------------------------ D O   N O T   T O U C H -------------------------------------####   
 
 
