@@ -1,9 +1,30 @@
-from xlrd import open_workbook
-
-book = open_workbook('example.xlsx')
-sheet = book.sheet_by_index(0)
-collection_year_col = 2 #Just an example
-test_year = 2010
-for row in range(sheet.nrows):
-    if sheet.cell(row,collection_year_col).value == test_year:
-        print("found")
+def function():
+    #########################################################
+    print("once you make this user you can never delete it.")
+    #########################################################
+    newuser = input("Enter new Username : ")
+    check_newuser = newuser.isalpha()
+    if check_newuser == True:
+        officialnewuser = newuser
+    else:
+        error = "FATEL 101, SEE ERROR CODES FOR MORE INFO"
+        return error
+    #########################################################
+    newpassword = input("Enter new Password : ")
+    confirrmpass = input("Repeat new Password : ")
+    if newpassword == confirrmpass:
+        officialnewpass = newpassword
+    else:
+        print("FATEL ERROR")
+    #########################################################
+    newelevationlevel = int(input("Admin or no (1 or 0) : "))
+    if newelevationlevel == 1:
+        officialelvation = newelevationlevel
+    elif newelevationlevel == 1:
+        officialelvation = newelevationlevel
+    elif newelevationlevel == 2:
+        officialelvation = newelevationlevel
+    else:
+        print("FATEL ERROR")
+        
+function()
